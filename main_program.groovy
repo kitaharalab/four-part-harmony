@@ -44,6 +44,7 @@ spn2MidiNote.put("F5#",  78)
 spn2MidiNote.put("G5",   79)
 spn2MidiNote.put("G5#",  80)
 spn2MidiNote.put("A5",   81)
+spn2MidiNote.put("0",     0)
 
 Map midiNote2Spn = new LinkedHashMap()
 def entrySet = spn2MidiNote.entrySet()
