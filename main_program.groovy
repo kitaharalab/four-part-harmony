@@ -44,7 +44,6 @@ spn2MidiNote.put("F5#",  78)
 spn2MidiNote.put("G5",   79)
 spn2MidiNote.put("G5#",  80)
 spn2MidiNote.put("A5",   81)
-spn2MidiNote.put("0",     0)
 
 Map midiNote2Spn = new LinkedHashMap()
 def entrySet = spn2MidiNote.entrySet()
@@ -133,12 +132,12 @@ for(i=1; i<=l; i++){
   else{
     def ej = mr.getMusicElement("s", i+1)
     c = notelist[i].notenum()
-    ej.setEvidence(ej.indexOf(midiNote2Spn.get(c)))
+    ej.setEvidence(ej.indexOf(midiNote2Spn.getOrDefault(c, "0")))
   }
 
   def ei = mr.getMusicElement("s", i)
   c = notelist[i-1].notenum()
-  ei.setEvidence(ei.indexOf(midiNote2Spn.get(c)))
+  ei.setEvidence(ei.indexOf(midiNote2Spn.getOrDefault(c, "0")))
 
   def si = mr.getMusicElement("s", i)
   def ssi = si.getHighestProbIndex()
@@ -154,7 +153,7 @@ for(i=1; i<=l; i++){
   def aaai = ai.getProb(aai)
   ai.setEvidence(aai)
   println(aaai + "Alto:" + valuesA[aai])
-  c1 = spn2MidiNote.get(valuesA[aai])
+  c1 = spn2MidiNote.getOrDefault(valuesA[aai], 0)
   partA.addNoteElement(n, m, c1, 100, 100)
 
   def ti = mr.getMusicElement("t", i)
@@ -162,7 +161,7 @@ for(i=1; i<=l; i++){
   def ttti = ti.getProb(tti)
   ti.setEvidence(tti)
   println(ttti + "Tenor:" + valuesT[tti])
-  c2 = spn2MidiNote.get(valuesT[tti])
+  c2 = spn2MidiNote.getOrDefault(valuesT[tti], 0)
   partT.addNoteElement(n, m, c2, 100, 100)
 
   def bi = mr.getMusicElement("b", i)
@@ -170,7 +169,7 @@ for(i=1; i<=l; i++){
   def bbbi = bi.getProb(bbi)
   bi.setEvidence(bbi)
   println(bbbi + "Bass:" + valuesB[bbi])
-  c3 = spn2MidiNote.get(valuesB[bbi])
+  c3 = spn2MidiNote.getOrDefault(valuesB[bbi], 0)
   partB.addNoteElement(n, m, c3, 100, 100)
 }
 // fileobj = new File(args[0] + args[1])
