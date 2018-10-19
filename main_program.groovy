@@ -173,4 +173,4 @@ for(i=1; i<=l; i++){
   partB.addNoteElement(n, m, c3, 100, 100)
 }
 // fileobj = new File(args[0] + args[1])
-scc2.toWrapper().toMIDIXML().writefileAsSMF("results/" + args[0] + args[1] + ".mid")
+scc2.toWrapper().toMIDIXML().writefileAsSMF("results/" + args[0] + "." + args[1] + ".mid")
