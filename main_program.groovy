@@ -40,10 +40,6 @@ spn.eachWithIndex{ name, i ->
 
 void setMostLikely(mr, part, index, onset, offset, map) {
   def element = mr.getMusicElement(part.name(), index)
-  // def labels = mr.getLabels(part.name())
-  // labels.each{ label ->
-  //   println(element.getProb(label))
-  // }
   def mostLikely = element.getMostLikely()
   println("${part.name()}:${index}:${mostLikely}:${map.get(mostLikely)}:${element.getProb(mostLikely)}")
   element.setEvidence(mostLikely)
@@ -108,7 +104,6 @@ for(i=1; i<=l; i++){
   println(i + "/" + l)
   
   if(i==l){
-    // process for element.length+1
     [partA, partT, partB].each{ part -> setEvidenceZero(mr, part, i+1) }
   } else {
     setEvidenceInput(mr, partS, i+1, notelist[i].notenum(), midiNote2spn)  
