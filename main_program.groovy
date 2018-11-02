@@ -47,7 +47,7 @@ void setMostLikely(mr, part, index, onset, offset, map) {
   def mostLikely = element.getMostLikely()
   println("${part.name()}:${index}:${mostLikely}:${map.get(mostLikely)}:${element.getProb(mostLikely)}")
   element.setEvidence(mostLikely)
-  part.addNoteElement(onset, offset, map.get(mostLikely, "0"), 100, 100)
+  part.addNoteElement(onset, offset, map.get(mostLikely, 0), 100, 100)
 }
 
 void setEvidenceInput(mr, part, index, notenum, map) {
@@ -110,11 +110,11 @@ for(i=1; i<=l; i++){
   if(i==l){
     // process for element.length+1
     [partA, partT, partB].each{ part -> setEvidenceZero(mr, part, i+1) }
+  } else {
+    setEvidenceInput(mr, partS, i+1, notelist[i].notenum(), midiNote2spn)  
   }
 
-  [i+1, i].each{ idx ->
-    setEvidenceInput(mr, partS, idx, notelist[idx-1].notenum(), midiNote2spn)
-  }
+  setEvidenceInput(mr, partS, i, notelist[i-1].notenum(), midiNote2spn)
 
   def onset = notelist[i-1].onset(480)
   def offset = notelist[i-1].offset(480)
