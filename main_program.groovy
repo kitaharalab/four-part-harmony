@@ -79,14 +79,12 @@ SCC.Part partT = scc2.addPart(1, 1, 0, 100, TENOR);
 SCC.Part partB = scc2.addPart(1, 1, 0, 100, BASS);
 
 // process for element[0]
-[partS, partA, partT, partB].each{ part -> setEvidence(mr, part, 0, 0) }
-
+[partA, partT, partB, partS].each{ part -> setEvidence(mr, part, 0, 0) }
 // process for elemnt[1] to notelist.length
 for(i=1; i<=l; i++){
   println(i + "/" + l)
   
   if(i==l){
-    // process for notelist.length
     [partA, partT, partB].each{ part -> setEvidence(mr, part, i+1, 0) }
   } else {
     setEvidence(mr, partS, i+1, notelist[i].notenum())  
